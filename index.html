@@ -1,0 +1,741 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miranda Bradshaw — Product Leader</title>
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ── Design Tokens ── */
+    :root {
+      --ink:    #0D1B2A;
+      --navy:   #1B3A6B;
+      --paper:  #FAFAF8;
+      --cream:  #F1EFE9;
+      --rule:   #E2DFDA;
+      --amber:  #B45309;
+      --muted:  #6B7280;
+      --body:   #383838;
+      --soft:   rgba(255,255,255,0.62);
+      --serif:  Georgia, 'Times New Roman', serif;
+      --sans:   -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* ── Base ── */
+    body {
+      font-family: var(--serif);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.125rem 3rem;
+      background: rgba(250, 250, 248, 0.9);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-home {
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.25rem;
+    }
+
+    .nav-links a {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100svh;
+      min-height: 100vh;
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 3rem 5.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(27,58,107,0.45) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 2rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3.75rem, 10vw, 8.5rem);
+      font-weight: normal;
+      line-height: 0.97;
+      letter-spacing: -0.03em;
+      color: white;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .hero-tagline {
+      font-family: var(--sans);
+      font-size: clamp(0.875rem, 1.4vw, 1rem);
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: var(--soft);
+      max-width: 480px;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.625rem;
+      color: rgba(255,255,255,0.3);
+      font-family: var(--sans);
+      font-size: 0.625rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .hero-scroll:hover { color: rgba(255,255,255,0.65); }
+
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 3rem;
+      background: currentColor;
+    }
+
+    /* ── Section utility ── */
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    /* ── About ── */
+    .about {
+      padding: 0 0 8rem;
+      border-bottom: 1px solid var(--rule);
+      scroll-margin-top: 3.75rem;
+    }
+
+    .about-section-header {
+      background: var(--cream);
+      padding: 2.75rem 3rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 4rem;
+    }
+
+    .about-section-header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .about-section-header-inner::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .about-section-label {
+      font-family: var(--sans);
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    .about-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 7rem;
+      align-items: start;
+    }
+
+    .about-left .eyebrow {
+      margin-bottom: 2.5rem;
+    }
+
+    .about-pull {
+      font-family: var(--serif);
+      font-size: clamp(1.2rem, 2vw, 1.55rem);
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--navy);
+    }
+
+    .about-right {
+      padding-top: 0;
+    }
+
+    .about-right p {
+      font-size: 1.0625rem;
+      line-height: 1.85;
+      color: var(--body);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-right p:last-child { margin-bottom: 0; }
+
+    .about-photos {
+      max-width: 1080px;
+      margin: 0 auto 4rem;
+      padding: 0 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+    }
+
+    .about-photo figcaption {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.75rem;
+    }
+
+    @media (max-width: 820px) {
+      .about-photos { grid-template-columns: 1fr; }
+      .about-photo img { height: 320px; }
+    }
+
+    .story-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .story-photos--single {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+    }
+
+    .story-photos--single .story-photo img {
+      height: auto;
+      object-fit: unset;
+    }
+
+    .story-photo img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 820px) {
+      .story-photos { grid-template-columns: 1fr; }
+      .story-photo img { height: 280px; }
+    }
+
+    .story-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .story-split-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 2px;
+    }
+
+    .story-split-photo--two {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .story-split-photo--two img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .story-split-content h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.875rem, 3.5vw, 2.875rem);
+      font-weight: normal;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+
+    .story-split-content p {
+      font-size: 1.0125rem;
+      line-height: 1.88;
+      color: var(--body);
+      margin-bottom: 1.5rem;
+    }
+
+    .story-split-content p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 820px) {
+      .story-split { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* ── Stories banner ── */
+    .stories-banner {
+      background: var(--cream);
+      padding: 2.75rem 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .stories-banner-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .stories-banner-inner .eyebrow {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    .stories-banner-inner::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
+
+    /* ── Story ── */
+    article.story {
+      padding: 6rem 3rem;
+      border-bottom: 1px solid var(--rule);
+      scroll-margin-top: 3.75rem;
+    }
+
+    article.story.alt {
+      background: var(--cream);
+    }
+
+    .story-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .story-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .story-num {
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      color: var(--amber);
+    }
+
+    .story-header::after {
+      content: '';
+      display: block;
+      width: 2.5rem;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .story h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.875rem, 3.5vw, 2.875rem);
+      font-weight: normal;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      color: var(--ink);
+      margin-bottom: 3rem;
+      max-width: 760px;
+    }
+
+    .story-body {
+      column-count: 2;
+      column-gap: 4.5rem;
+      column-rule: 1px solid var(--rule);
+    }
+
+    .story-body p {
+      font-size: 1.0125rem;
+      line-height: 1.88;
+      color: var(--body);
+      margin-bottom: 1.5rem;
+      break-inside: avoid;
+    }
+
+    .story-body p:last-child { margin-bottom: 0; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--ink);
+      padding: 4.5rem 3rem;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .footer-name {
+      font-family: var(--serif);
+      font-size: 1.625rem;
+      font-weight: normal;
+      color: white;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.375rem;
+    }
+
+    .footer-sub {
+      font-family: var(--sans);
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.04em;
+    }
+
+    .footer-linkedin {
+      display: inline-block;
+      margin-top: 1rem;
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-linkedin:hover { color: white; }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-right p {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.05em;
+      line-height: 1.7;
+    }
+
+    .footer-right p + p {
+      margin-top: 0.25rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 820px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+
+      .hero { padding: 7rem 1.5rem 4.5rem; }
+      .hero-scroll { right: 1.5rem; }
+
+      .about { padding: 5rem 1.5rem; }
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 2.75rem;
+      }
+      .about-right { padding-top: 0; }
+
+      .stories-banner { padding: 2rem 1.5rem; }
+
+      article.story { padding: 4.5rem 1.5rem; }
+      .story-body {
+        column-count: 1;
+        column-rule: none;
+      }
+
+      footer { padding: 3.5rem 1.5rem; }
+      .footer-inner {
+        flex-direction: column;
+        gap: 2.25rem;
+        align-items: flex-start;
+      }
+      .footer-right { text-align: left; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-name { letter-spacing: -0.025em; }
+      .story h2 { font-size: 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a class="nav-home" href="#top">Miranda Bradshaw</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#stories">Stories</a>
+      <a href="https://www.linkedin.com/in/miranda-bradshaw/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <p class="hero-eyebrow">Product Leader</p>
+    <h1 class="hero-name">Miranda<br>Bradshaw</h1>
+    <p class="hero-tagline">Working at the intersection of technology, people, and purpose — on problems that matter and things worth caring about.</p>
+    <a class="hero-scroll" href="#about">Scroll</a>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="about-section-header">
+      <div class="about-section-header-inner">
+        <p class="about-section-label">About</p>
+      </div>
+    </div>
+    <div class="about-photos">
+      <figure class="about-photo">
+        <img src="oldfamilypic.jpeg" alt="Miranda as a child with her family">
+        <figcaption>Then</figcaption>
+      </figure>
+      <figure class="about-photo">
+        <img src="newfamilypic.jpeg" alt="Miranda with her two dogs">
+        <figcaption>Now</figcaption>
+      </figure>
+    </div>
+    <div class="about-inner">
+      <div class="about-left">
+        <p class="about-pull">"My path hasn't been linear. It started with a volleyball contract in Copenhagen."</p>
+      </div>
+      <div class="about-right">
+        <p>I'm a product leader who has spent my career at the intersection of technology, people, and purpose — working on problems that matter and building things worth caring about. I set my teams up for success by providing them with the direction, context, and confidence they need to make decisions autonomously.</p>
+        <p>My path hasn't been linear: it started with a volleyball contract in Copenhagen and wound through data engineering, dental AI, and urban transportation before landing where I am today. That unconventional route is, I think, the most honest explanation of how I work. I'm curious by nature and unafraid to follow that curiosity wherever it leads, even when it leads somewhere unexpected.</p>
+        <p>I care deeply about the people I build for and the people I build with. I've learned that the best products — like the best teams and the best cities — are the ones designed with genuine attention to how humans actually live. Outside of work, I serve on Salt Lake City's transportation advisory board and I'm the mother of two darling dogs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stories banner -->
+  <div class="stories-banner">
+    <div class="stories-banner-inner">
+      <span class="eyebrow">Stories</span>
+    </div>
+  </div>
+
+  <!-- Story 01 -->
+  <article class="story" id="stories">
+    <div class="story-inner">
+      <div class="story-header">
+        <span class="story-num">01</span>
+      </div>
+      <h2>Finding My Footing in Copenhagen</h2>
+      <div class="story-photos">
+        <figure class="story-photo">
+          <img src="copenhagen.jpeg" alt="Miranda in Copenhagen">
+        </figure>
+        <figure class="story-photo">
+          <img src="provb1.jpeg" alt="Volleyball match in Denmark">
+        </figure>
+      </div>
+      <div class="story-body">
+        <p>I showed up in Copenhagen not knowing a soul, barely able to pronounce the street names, and armed mostly with optimism and a duffel bag of volleyball gear. Playing professionally in Denmark was a leap I took more on instinct than on plan, and the first months were humbling in the best possible way — learning to navigate a new city, a new culture, and a locker room full of teammates from across Europe who didn't all share a common language. We communicated through sport and stubbornness and, eventually, genuine friendship. By the end of the season, we had won a national championship together, and I had learned more about adaptability, patience, and the warmth that comes from really trying to understand people who are different from you than I had in years of more conventional environments.</p>
+        <p>When the season ended, I wasn't ready to leave. Something about Copenhagen had gotten into me — the pace of it, the possibility of it — and I was determined to stay. I got lucky: Nordea had an opening in their data engineering department, and they took a chance on a volleyball player with curiosity and a willingness to figure things out. That job was my first exposure to what it actually felt like to work on systems that mattered, to sit at the intersection of data and decision-making, and to realize I loved asking why things worked the way they did.</p>
+        <p>I wouldn't be a product manager today without that season — the volleyball, the leap, the staying. The whole detour taught me that some of the most formative chapters of a life don't look like a plan at all. They look like saying yes to something slightly terrifying and then refusing to leave before you've learned everything you can.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- Story 02 -->
+  <article class="story alt">
+    <div class="story-inner">
+      <div class="story-split">
+        <div class="story-split-content">
+          <div class="story-header">
+            <span class="story-num">02</span>
+          </div>
+          <h2>The World's First AI Crowns</h2>
+          <p>My transition to 3Shape in Denmark put me in the middle of something genuinely new: digital workflows for dental implants, a field evolving faster than the industry knew what to do with. The work carried real weight — we were helping clinicians work more precisely, and that precision had consequences for real patients. When the team started training a model on millions of crown designs with the goal of delivering AI-generated restorations, I felt the particular electricity that comes from working on something that hasn't existed before.</p>
+          <p>I was paired with a young designer named Lucia, and together we were handed what turned out to be as much a psychology problem as a design problem: how do you build a UX that makes a dental technician trust an AI enough to actually use what it produces? Trust in unfamiliar technology doesn't come from a good interface alone. It comes from transparency, from giving people enough control that they feel like collaborators rather than passengers, and from genuinely respecting the expertise they've spent years building. Lucia and I talked through this endlessly, tested constantly, and learned as much from the technicians we interviewed as from any design framework.</p>
+          <p>What stayed with me wasn't the product launch — it was the discovery that I found this kind of work deeply motivating. Working with smart, curious people to solve problems that matter to users, navigating the space where human behavior and technology meet — that combination lit me up. It still does.</p>
+        </div>
+        <div class="story-split-photo">
+          <img src="3shape.jpeg" alt="Miranda outside the 3Shape office">
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Story 03 -->
+  <article class="story">
+    <div class="story-inner">
+      <div class="story-split">
+        <div class="story-split-photo">
+          <img src="cityhall.jpeg" alt="Miranda outside Salt Lake City Hall">
+        </div>
+        <div class="story-split-content">
+          <div class="story-header">
+            <span class="story-num">03</span>
+          </div>
+          <h2>Cities, Service, and a Fifteen&#8209;Minute Zoom Call That Changed Things</h2>
+          <p>I came to Passport already caring about cities in an abstract way, but working there made that care specific and urgent. Transportation shapes how people move through their daily lives — who gets where, how easily, how safely — and I became genuinely invested in the work. When the layoff came, it hit harder than I expected. Part of it was practical. We were a remote team, and the loss of those daily connections with colleagues I respected and genuinely liked felt sudden and disorienting. But a bigger part was the quiet grief of being pulled away from work I believed in.</p>
+          <p>My partner, as they often do, saw something I couldn't quite see yet. They noticed a small opportunity — a fifteen-minute Zoom meeting with Salt Lake City's mayor — and encouraged me to sign up. I almost didn't. But I went, and in that conversation the mayor encouraged me to apply for a seat on the city's transportation advisory board. I said yes more out of openness than confidence, unsure if I had enough expertise to contribute.</p>
+          <p>That was a couple years ago and I'm still on the board. What started as a small, slightly reluctant yes has become a meaningful part of my life — a way to stay connected to the things I care about, to engage with my city in a real and substantive way, and to be useful to something larger than any single job. I've learned that civic life is one of the more underrated career development tools available, and that service has a way of restoring you when professional setbacks have taken something out.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Story 04 -->
+  <article class="story alt">
+    <div class="story-inner">
+      <div class="story-split">
+        <div class="story-split-content">
+          <div class="story-header">
+            <span class="story-num">04</span>
+          </div>
+          <h2>A Wedding. Ten Hours Away. In the Woods.</h2>
+          <p>My partner and I are both people who like a fun idea more than a safe one, which explains why we planned our wedding at a campground in Montana, ten hours from where we live in Utah. We had a vision — something personal, a little wild, rooted in community — and we committed to it, which meant months of working through every logistical and emotional wrinkle that commitment entailed. Planning a wedding is, among other things, a thorough test of how two people communicate under pressure, how they handle disagreement, how they stay aligned when the details multiply and the stakes feel high.</p>
+          <p>Friends came from everywhere. From Denmark. From old Passport teams. From seasons of life we hadn't revisited in years. They drove and flew and showed up, and then they got to work — literally — because putting on a wedding yourselves at a campground requires everyone's hands. What unfolded over those days was something I struggle to fully articulate: people who had never met becoming part of the same story, all of us working toward something together.</p>
+          <p>I've thought about that weekend a lot in the year since. It taught me something real about what community actually means — not proximity, but investment. The people in your life who will show up, who will hang lights and make toasts and dance badly and mean it. I felt more loved in those woods than I have almost anywhere, and I left with a clearer sense of what I want to build, in work and in life: things worth showing up for.</p>
+        </div>
+        <div class="story-split-photo">
+          <img src="wedding.jpeg" alt="Wedding ceremony in the woods in Montana">
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Story 05 -->
+  <article class="story">
+    <div class="story-inner">
+      <div class="story-split">
+        <div class="story-split-photo">
+          <img src="climbing.jpeg" alt="Miranda sitting on top of a boulder">
+        </div>
+        <div class="story-split-content">
+          <div class="story-header">
+            <span class="story-num">05</span>
+          </div>
+          <h2>Learning to Take Big Swings Again</h2>
+          <p>The layoff from Passport shook me more than I let on at the time. By most external measures, things were fine: I landed at a new company, Optro, relatively quickly, and the feedback I received there was consistently positive. But for a long time I carried a low-grade dread that didn't match the reality around me — a persistent anxiety that another floor would drop, that the good reviews were temporary, that I was somehow still on probation from an experience I had already survived.</p>
+          <p>I started seeing a therapist, which turned out to be one of the better decisions I've made as an adult. Not because anything was dramatically wrong, but because I needed help untangling the story I was telling myself from the one that was actually true. The work was slow and honest and sometimes uncomfortable. I learned that confidence isn't a fixed trait — it's something you tend, and that tending it requires a certain willingness to look clearly at yourself without flinching and without performing.</p>
+          <p>I'm genuinely glad for the difficulty of that period, even though I wouldn't choose it again. I came out of it with something more durable than the confidence I had before the layoff: a sense of self that isn't contingent on things going perfectly. I'm ready to take big swings now — in my career, in the projects I care about, in the ways I try to contribute — because I know I can handle what happens when they don't land, and because I'm confident enough in who I am to keep going anyway. That feels like something worth knowing about myself.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p class="footer-name">Miranda Bradshaw</p>
+        <p class="footer-sub">Product Leader &nbsp;·&nbsp; Dog Mom &nbsp;·&nbsp; Volleyball Player &nbsp;·&nbsp; Transportation Enthusiast</p>
+        <a href="https://www.linkedin.com/in/miranda-bradshaw/" target="_blank" rel="noopener" class="footer-linkedin">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
