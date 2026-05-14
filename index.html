@@ -352,6 +352,97 @@
 
     /* story-split mobile handled in main breakpoint below */
 
+    /* ── Projects banner ── */
+    .projects-banner {
+      background: var(--cream);
+      padding: 2.75rem 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .projects-banner-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .projects-banner-inner .eyebrow {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    .projects-banner-inner::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
+
+    /* ── Projects ── */
+    .projects {
+      padding: 6rem 3rem;
+      border-bottom: 1px solid var(--rule);
+      scroll-margin-top: 3.75rem;
+    }
+
+    .projects-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+    }
+
+    .project {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .project-image {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 2px;
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: clamp(1.875rem, 3.5vw, 2.875rem);
+      font-weight: normal;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      color: var(--ink);
+      margin-bottom: 1.75rem;
+    }
+
+    .project-button {
+      display: inline-block;
+      padding: 0.875rem 1.75rem;
+      background: var(--ink);
+      color: white;
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s ease;
+    }
+
+    .project-button:hover { background: var(--amber); }
+
     /* ── Stories banner ── */
     .stories-banner {
       background: var(--cream);
@@ -528,6 +619,12 @@
       .about-photo img { height: 300px; }
       .about-inner { padding: 0 1.5rem; grid-template-columns: 1fr; gap: 2rem; }
 
+      /* Projects */
+      .projects-banner { padding: 2rem 1.5rem; }
+      .projects { padding: 3.5rem 1.5rem; }
+      .projects-inner { gap: 3.5rem; }
+      .project-image { margin-bottom: 1.5rem; }
+
       /* Stories banner */
       .stories-banner { padding: 2rem 1.5rem; }
 
@@ -556,6 +653,8 @@
       .story-split-content h2 { font-size: 1.75rem; }
       .about-section-label { font-size: 1.375rem; }
       .stories-banner-inner .eyebrow { font-size: 1.375rem; }
+      .projects-banner-inner .eyebrow { font-size: 1.375rem; }
+      .project-title { font-size: 1.75rem; }
     }
   </style>
 </head>
@@ -566,6 +665,7 @@
     <a class="nav-home" href="#top">Miranda Bradshaw</a>
     <div class="nav-links">
       <a href="#about">About</a>
+      <a href="#projects">Projects</a>
       <a href="#stories">Stories</a>
       <a href="https://www.linkedin.com/in/miranda-bradshaw/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
@@ -605,6 +705,26 @@
         <p>My path hasn't been linear: it started with a volleyball contract in Copenhagen and wound through data engineering, dental AI, and urban transportation before landing where I am today. That unconventional route is, I think, the most honest explanation of how I work. I'm curious by nature and unafraid to follow that curiosity wherever it leads, even when it leads somewhere unexpected.</p>
         <p>I care deeply about the people I build for and the people I build with. I've learned that the best products — like the best teams and the best cities — are the ones designed with genuine attention to how humans actually live. Outside of work, I serve on Salt Lake City's transportation advisory board and I'm the mother of two darling dogs.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- Projects banner -->
+  <div class="projects-banner">
+    <div class="projects-banner-inner">
+      <span class="eyebrow">Projects</span>
+    </div>
+  </div>
+
+  <!-- Projects -->
+  <section class="projects" id="projects">
+    <div class="projects-inner">
+      <article class="project">
+        <figure class="project-image">
+          <img loading="lazy" src="smartforms.PNG" alt="Smart Forms — A Core Experiences Case Study">
+        </figure>
+        <h2 class="project-title">Smart Forms</h2>
+        <a class="project-button" href="projects/smart-forms.html" target="_blank" rel="noopener">Go to Project</a>
+      </article>
     </div>
   </section>
 
